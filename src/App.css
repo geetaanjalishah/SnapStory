@@ -1,0 +1,582 @@
+.col-1 {
+  width: calc(100% / 12);
+}
+
+.col-1_5 {
+  width: calc(1.5 * 100% / 12);
+}
+
+.col-0_5 {
+  width: calc(0.5 * 100% / 12);
+}
+.col-2 {
+  width: calc(2 * 100% / 12);
+}
+
+.col-3 {
+  width: calc(3 * 100% / 12);
+}
+
+.col-4 {
+  width: calc(4 * 100% / 12);
+}
+
+.col-5 {
+  width: calc(5 * 100% / 12);
+}
+
+.col-6 {
+  width: calc(6 * 100% / 12);
+}
+
+.col-7 {
+  width: calc(7 * 100% / 12);
+}
+
+.col-8 {
+  width: calc(8 * 100% / 12);
+}
+
+.col-9 {
+  width: calc(9 * 100% / 12);
+}
+
+.col-10 {
+  width: calc(10 * 100% / 12);
+}
+
+.col-11 {
+  width: calc(11 * 100% / 12);
+}
+
+.col-12 {
+  width: calc(12 * 100% / 12);
+}
+
+.flex {
+  display: flex;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.carousel {
+  flex: 1; /* Adjust flex for equal space sharing */
+  margin: 0 10px; /* Add spacing between carousels */
+  overflow: hidden; /* Prevent overflow */
+  border-radius: 10px; /* Add rounded corners for aesthetics */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.container {
+  display: flex;
+  height: 100%; /* Ensure it spans the full screen */
+  width: 100%;
+  position: relative;
+}
+
+.img-full {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.carousel-container {
+  display: flex;
+  flex: 7;
+  justify-content: space-evenly; /* Or gap: 10px */
+  height: 50%;
+}
+
+.auth {
+  padding: 20px;
+  background: linear-gradient(
+    to right,
+    #f5f7fa,
+    #c3cfe2
+  ); /* Gradient background */
+  text-align: center;
+  border-left: 2px solid #ccc; /* Add separation */
+}
+
+.carousel img {
+  width: 100%;
+  height: 100%; /* Ensure it takes up the full height of the container */
+  object-fit: cover; /* Prevent distortion */
+}
+
+.auth-section {
+  flex: 1;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 15px;
+  height: 15px;
+}
+
+.appname-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.appname-logo {
+  height: 1em;
+  margin-right: 0.5em;
+}
+
+.google-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.google-button:hover {
+  background-color: #f5f5f5;
+  transform: scale(1.05);
+}
+
+.auth-text {
+  color: #444;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.appname {
+  font-size: 2rem;
+  color: #333;
+}
+
+.google-logo {
+  height: 1em;
+  margin-right: 0.5em;
+}
+
+.appname-logo {
+  width: 46px;
+  height: 50px;
+  /* margin-right: 0.5em; Adds spacing between the image and text */
+}
+
+.appname {
+  font-size: 1em; /* Ensure the text and image are the same size */
+}
+
+.intro1 {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.greeting-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.greeting {
+  font-size: 18px;
+  font-weight: bold;
+  color: #777;
+  padding: -10px;
+}
+
+.name {
+  font-size: 20px;
+  color: black;
+}
+
+.floating-btn {
+  position: fixed;
+  bottom: 20px; /* Distance from bottom */
+  right: 20px; /* Distance from right */
+  width: 50px;
+  height: 50px;
+  background-color: #007bff; /* Change to your preferred color */
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.floating-btn:hover {
+  background-color: #0056b3; /* Darker shade for hover */
+}
+
+.floating-btn:active {
+  background-color: #003f7f; /* Even darker shade for click */
+}
+
+.feeds {
+  font-size: 35px;
+  padding: 0 15px;
+  font-weight: 600;
+}
+.post {
+  margin-bottom: 20px;
+}
+
+.user-icon {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.username {
+  margin: 0;
+}
+
+.share-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-end; /* Aligns the Share button to the right */
+  padding-top: 10px; /* Adjusts the space above the Share button */
+}
+
+.share-btn {
+  background-color: #00000036;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: initial;
+    cursor: pointer;
+    font-weight: 600;
+    color: black;
+    border: none;
+}
+
+.share-options {
+  display: flex;
+  justify-content: space-between; /* Distribute the icons evenly in rows */
+  position: absolute;
+  top: 50px; /* Adjust to position the options below the button */
+  right: 0; /* Align to the right of the button */
+  background-color: white; /* Background color for the options */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10; /* Ensure it overlaps above the card */
+}
+
+.share-options > * {
+  margin-right: 10px; /* Space between icons */
+}
+
+/* Optional: Make the icons larger and aligned */
+.share-options svg {
+  width: 30px;
+  height: 30px;
+}
+
+.share-options button {
+  display: block;
+  margin: 5px 0;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.share-options button:hover {
+  background-color: #e0e0e0;
+}
+
+.post-images img {
+  display: block;
+  margin: 10px 0;
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.post.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: auto; /* Adjust as needed */
+  margin: 20px auto;
+}
+
+.post-images img {
+  /* max-height: 150px; */
+  object-fit: cover;
+  width: 100%;
+}
+
+.row {
+  gap: 20px; /* Add spacing between cards */
+}
+
+.container {
+  max-width: 90%;
+}
+
+
+.cover {
+  position: relative;
+  height: 250px; /* Adjust the height of the cover image */
+  width: 100%;
+  overflow: hidden;
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-info {
+  position: relative;
+  top: -40px; /* Adjust this to bring the profile image above the cover */
+  margin: 0 20px;
+  text-align: center;
+}
+
+.profile-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 5px solid white; /* Border to separate profile image from cover */
+  object-fit: cover;
+  position: relative;
+  display: flex;
+}
+
+.profile-details {
+  margin-top: 20px;
+  text-align: start;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+p {
+  font-size: 16px;
+  color: #555;
+}
+
+.edit-profile-btn {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #0000003b;
+    color: black;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 70px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.edit-profile-btn:hover {
+  background-color: #0056b3;
+}
+
+.edit-profile {
+  padding: 20px;
+  text-align: center;
+}
+
+.mypost{
+  padding: 0 20px;
+  font-size: 40px;
+}
+.cover {
+  position: relative;
+  height: 200px; /* Adjust as needed */
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pencil-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.profile-info {
+  position: relative;
+  margin-top: -60px;
+}
+
+.profile-icon-1 {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid white;
+  margin-bottom: 10px;
+}
+
+.name,
+.bio {
+  margin: 10px 0;
+}
+
+h1,
+p {
+  font-size: 18px;
+  color: #333;
+}
+
+.pencil-icon:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.save-btn {
+  transform: translateY(-50%);
+  background-color: #0000003b;
+    color: black;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 70px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.save-btn:hover {
+  background-color: #0056b3;
+}
+
+.edit-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.icon-btn-1 {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+
+.icon-btn-2 {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  margin: -35px 110px;
+}
+
+.icon-btn-3 {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-btn-4 {
+  width: 20px;
+  height: 20px;
+}
+
+.name, .bio {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name input,
+.bio input {
+  font-size: 1.2em;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+  margin-right: 10px;
+}
+
+.name-editprofile{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: xx-large ;
+}
+
+.bio-1{
+  font-size: large;
+  margin: 10px 0;
+display: flex;
+}
+
+.post.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: auto; /* Adjust as needed */
+  margin: 20px auto;
+}
+
+/* .post-images img {
+  max-height: 150px;
+  object-fit: cover;
+  width: 100%;
+} */
+
+
