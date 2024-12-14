@@ -47,14 +47,10 @@ export const Signin = () => {
 
   return (
     <div className="main">
-      <div className="carousel-container">
-        <div className="carousel">
+      <div className="">
+        <div className=" scroll flex">
           <ScrollingGallery />
-        </div>
-        <div className="carousel">
           <ScrollingGallery />
-        </div>
-        <div className="carousel">
           <ScrollingGallery />
         </div>
       </div>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 const ScrollingGallery = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
+  
   const images = [
     "https://s3-alpha-sig.figma.com/img/934c/8eaa/07a6b9eb2a8babdea056a3a7b1fc147f?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=gG1VNBA2dyrCdAAU8DjK1KO76BHrTDI4NZOSLYdfrVrSjSTXul5Wlvswt~WwrbQb7RaGfhopPbQFPjq6PkcNqEstca8W1qiNYTyNxr0S3wgb1WyHd2sPZy5-LZ1Nwg7dMGQq4Y5ALHIPBOr4uY0mRfHwYLM9fb6T4neAY8d7pbpZB6dKvdq9gafxOsBlE4Lygau11nhdwsQsOju4Qvdg7zkd7FwekwdY8~76IWwYHZ1JVY6trpBtjerrjjiCxWBewqgr4W0qpmeCkWZE5lIBenIq5bDKl1Q23T21FnrxlAkeXkirra6tnUvnVMs-0F10m191ceFy7UDx-xw7Ti0Pgw__",
     "https://s3-alpha-sig.figma.com/img/d73e/2214/4044975f305ca70914a520476023fd6d?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SEwhVjfBZ-1AvCgfbnjpA4FbwXwXOjk~0jPQp0Y0pH2~nAHGtDELzHYU3z1VZcf~O1~ePbgOWVVn1Z5uP~o3ueL7NGcF7EoFD3wHuN99iwdzYZ84KlGLNR3Ei8-1lxxua0b6Rv2L8xlhFxNdeP-8UKd~QfQioBzR3tLYJEQQ-hShvOfTG-u2LPXtb1zpLbPyfMEHGE9vZat2~CvSEo3MSeHJ-d2-XYJQL~5NK0U~bj6SnAcesqz9r7ro~zmfbEU85BjcFD-2-rCy8ab5w3Jps0Vz~tJRG1Dq3gTm~wLlSWJZbfSLSlMaecuyct863x8gca2APVLuVanZy2xXNC1rSQ__",
@@ -15,45 +16,49 @@ const ScrollingGallery = () => {
     "https://s3-alpha-sig.figma.com/img/7ce7/facf/669dc0383b4fe8e47fdc768f7968602b?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pa7t9hCHQ0J2xdnEJTKRDt-oBRzFK8vQu2BQM0nva9SoarC65rWt~wIEm3g52892U7SKuBmOizz-9kPbW1Gnj5vdmZanyObksEhxeH~5cgVXwPi~jDpNdhE9T79USakGq8s4gMlozyD1fPZaPIBnbL1Pcc-h2sK9TAfZijtOy3-tjQBUpqE8VBp0QH-atti3LaZ5O4~8Gx5ZldeBGaR-O65v5MOHAOeVYN-ugXd2lQOUtiFu8Oooceer7PvB5YnRZ2KgfxFxlAbh2Y5n5W62F8hGwEUsoL7oofShWz9jxfBb8zgodHUgWB1UReDuLNPfBcZEJDPkul9wnGgot1D1kg__",
   ]; 
 
+  
   useEffect(() => {
-    const scrollInterval = setInterval(() => {
-      setScrollPosition((prevPosition) => prevPosition + 1);
-    }, 50); 
+    const interval = setInterval(() => {
+      setScrollPosition((prev) =>
+        prev < (images.length - 1) * 300 ? prev + 1 : 0
+      );
+    }, 10); // Adjust speed for smooth or faster scrolling
 
-    return () => clearInterval(scrollInterval); 
+    return () => clearInterval(interval);
   }, []);
-
-  useEffect(() => {
-    const galleryElement = document.getElementById("scrolling-gallery");
-
-    if (galleryElement) {
-      if (
-        scrollPosition >=
-        galleryElement.scrollHeight - galleryElement.clientHeight
-      ) {
-        setScrollPosition(0);
-      }
-
-      galleryElement.scrollTop = scrollPosition;
-    }
-  }, [scrollPosition]);
 
   return (
     <div
-      id="scrolling-gallery"
       style={{
-        height: "100%",
+        width: "500px",
+        height: "600px",
         overflow: "hidden",
-        border: "1px solid #ccc",
+        border: "1px solid #ddd",
+        position: "relative",
       }}
     >
-      <div>
-        {images.map((image, index) => (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          transform: `translateY(-${scrollPosition}px)`,
+          transition: "transform 0.1s linear",
+          margin: "0 5px", 
+          overflow: "hidden", 
+          borderRadius: "10px",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        {images.map((src, index) => (
           <img
             key={index}
-            src={image}
-            alt={`Gallery ${index + 1}`}
-            style={{ width: "100%", display: "block", marginBottom: "10px" }}
+            src={src}
+            alt={`Gallery item ${index}`}
+            style={{
+              width: "100%",
+              height: "auto", 
+              objectFit: "cover",
+            }}
           />
         ))}
       </div>
