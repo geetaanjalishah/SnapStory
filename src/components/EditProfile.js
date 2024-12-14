@@ -4,7 +4,8 @@ import { db } from "../firebase"; // Import your Firebase config
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import axios from "axios";
 import { getAuth, updateProfile } from "firebase/auth";
-
+import FloatingLogoutButton from "./FloatingLogoutButton";
+import BackButton from "./BackButton";
 
 const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/geetaanjalishah/image/upload";
 const CLOUDINARY_UPLOAD_PRESET = "userimg";
@@ -21,16 +22,30 @@ const EditProfile = () => {
   const [isEditingBio, setIsEditingBio] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const userId = "srG0sHA66BgClRndpvKokFpEaIY2";
+  const auth = getAuth();
+  const userId = auth.currentUser?.uid; // Dynamically fetch user ID from Firebase Auth
 
   useEffect(() => {
     const fetchUserData = async () => {
+      if (!userId) {
+        console.error("No user is logged in.");
+        return;
+      }
+
       try {
         const userRef = doc(db, "users", userId);
         const userDoc = await getDoc(userRef);
 
         if (userDoc.exists()) {
           setUserData(userDoc.data());
+        } else {
+          // Set empty fields for first-time visitors
+          setUserData({
+            coverImage: null,
+            profileImage: null,
+            name: "",
+            bio: "",
+          });
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -40,7 +55,7 @@ const EditProfile = () => {
     };
 
     fetchUserData();
-  }, []);
+  }, [userId]);
 
   const updateFirestore = async (updates) => {
     try {
@@ -48,12 +63,10 @@ const EditProfile = () => {
       await updateDoc(userRef, updates);
   
       // Update Firebase Auth profile if necessary
-      const auth = getAuth();
-      const currentUser = auth.currentUser;
       if (updates.name || updates.profileImage) {
-        await updateProfile(currentUser, {
-          displayName: updates.name || currentUser.displayName,
-          photoURL: updates.profileImage || currentUser.photoURL,
+        await updateProfile(auth.currentUser, {
+          displayName: updates.name || auth.currentUser.displayName,
+          photoURL: updates.profileImage || auth.currentUser.photoURL,
         });
       }
   
@@ -108,6 +121,12 @@ const EditProfile = () => {
 
   return (
     <div className="edit-profile">
+      <div>
+        <FloatingLogoutButton />
+      </div>
+      <div>
+        <BackButton />
+      </div>
       {/* Cover Image */}
       <div className="cover">
         {userData.coverImage ? (
@@ -116,17 +135,16 @@ const EditProfile = () => {
           <p>No Cover Image</p>
         )}
         <label htmlFor="cover-image" className="edit-btn">
-        <img 
-        src="https://static-00.iconduck.com/assets.00/pencil-emoji-2048x2048-e4u035dk.png"
-        alt="Edit" className="icon-btn-1" />
-      </label>
-      <input
-        type="file"
-        id="cover-image"
-        onChange={(e) => handleImageChange(e, "coverImage")}
-        style={{ display: "none" }}
-      />
-      
+          <img 
+            src="https://static-00.iconduck.com/assets.00/pencil-emoji-2048x2048-e4u035dk.png"
+            alt="Edit" className="icon-btn-1" />
+        </label>
+        <input
+          type="file"
+          id="cover-image"
+          onChange={(e) => handleImageChange(e, "coverImage")}
+          style={{ display: "none" }}
+        />
       </div>
 
       {/* Profile Image */}
@@ -163,9 +181,9 @@ const EditProfile = () => {
             autoFocus
           />
         ) : (
-          <h1>{userData.name}</h1>
+          <h1>{userData.name || "Enter your name"}</h1> 
         )}
-        <button className="edit-btn"  onClick={() => setIsEditingName(true)}>
+        <button className="edit-btn" onClick={() => setIsEditingName(true)}>
           <img
             src="https://static-00.iconduck.com/assets.00/pencil-emoji-2048x2048-e4u035dk.png"
             alt="Edit"
@@ -186,7 +204,7 @@ const EditProfile = () => {
             autoFocus
           />
         ) : (
-          <p>{userData.bio}</p>
+          <p>{userData.bio || "Enter your bio"}</p> 
         )}
         <button className="edit-btn" onClick={() => setIsEditingBio(true)}>
           <img

@@ -6,6 +6,8 @@ import { doc, collection, query, onSnapshot, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import FloatingButton from "./FloatingButton";
 import Share from "./Share";
+import FloatingLogoutButton from "./FloatingLogoutButton";
+import BackButton from "./BackButton";
 
 const cookies = new Cookies();
 
@@ -52,19 +54,49 @@ const Home = () => {
     );
   };
 
-  const fetchUserPosts = (uid) => {
+  const fetchUserPosts = () => {
     const postsRef = collection(db, "posts");
+    const q = query(postsRef);
+  
     return onSnapshot(
-      postsRef,
+      q,
       (snapshot) => {
-        const userPosts = snapshot.docs.map((doc) => doc.data());
-        setPosts(userPosts);
+        const userPosts = snapshot.docs.map(async (postDoc) => {
+          const postData = postDoc.data();
+          const userId = postData.userId; // Using the correct field name: userId
+  
+          if (!userId) {
+            console.error("User UID is missing for post:", postData);
+            return postData; // Skip post if userId is missing
+          }
+  
+          // Fetch user profile details using userId
+          const userDocRef = doc(db, "users", userId); 
+          try {
+            const userDoc = await getDoc(userDocRef);
+            const userData = userDoc.exists() ? userDoc.data() : {};
+  
+            postData.userName = userData.name || userData.displayName || "Anonymous User";
+            postData.userProfile = userData.profileImage || userData.profilePicture || "defaultProfileImageURL"; // Adjust the field name
+          } catch (error) {
+            console.error("Error fetching user data:", error);
+          }
+  
+          return postData;
+        });
+  
+        // Use Promise.all to handle async behavior of fetching user details
+        Promise.all(userPosts).then(postsWithUserDetails => {
+          setPosts(postsWithUserDetails); // Update state with the modified posts
+        });
       },
       (error) => {
         console.error("Error fetching posts:", error);
       }
     );
   };
+  
+
 
   const fetchUserData = async (uid) => {
     try {
@@ -99,6 +131,9 @@ const Home = () => {
 
   return (
     <div className="home">
+    <FloatingLogoutButton />
+    <div>
+    <BackButton /></div>
       {user ? (
         <>
           <div className="intro1" onClick={goToProfile}>
@@ -120,58 +155,43 @@ const Home = () => {
               <div className="feeds">Feeds</div>
               {posts.length > 0 ? (
                 posts.map((post, index) => (
-                  <div
-                    key={index}
-                    className="post card"
-                    style={{ background: generateRandomGradient() }}
-                  >
-                  <div className="card-content">
-                  <div className="post-header row valign-wrapper">
-                    <div className="col s2">
-                      {user.profile ? (
-                        <img
-                          src={user.profile}
-                          alt="Profile"
-                          className="profile-icon-1"
-                        />
-                      ) : (
-                        <p>No Profile Image</p>
+                  <div key={index} className="post card" style={{ background: generateRandomGradient() }}>
+                    <div className="card-content">
+                      <div className="post-header row valign-wrapper">
+                        <div className="col s2">
+                          {post.userProfile ? (
+                            <img src={post.userProfile} alt="Profile" className="profile-icon-1" />
+                          ) : (
+                            <p>No Profile Image</p>
+                          )}
+                        </div>
+                        <div className="post-info col s10">
+                          <h5 className="username">{post.userName || "Anonymous User"}</h5>
+                          <p className="#424242-text">
+                            {post.timestamp
+                              ? new Date(post.timestamp.seconds * 1000).toLocaleString()
+                              : "Unknown Date"}
+                          </p>
+                        </div>
+                      </div>
+                      <p className="post-text">{post.text}</p>
+                      {post.images?.length > 0 && (
+                        <div className="post-images">
+                          {post.images.map((img, index) => (
+                            <img key={index} src={img} alt={`Post image ${index}`} className="post-image responsive-img" />
+                          ))}
+                        </div>
                       )}
+                      <div className="share-container">
+                        <Share url={window.location.href} title={post.title} description={post.text} />
+                      </div>
                     </div>
-                    <div className="post-info col s10">
-                      <h5 className="username">
-                        {user?.displayName || "Anonymous User"}
-                      </h5>
-                      <p className="#424242-text">
-                        {post.timestamp
-                          ? new Date(post.timestamp.seconds * 1000).toLocaleString()
-                          : "Unknown Date"}
-                      </p>
-                    </div>
-                  </div>
-                  <p className="post-text">{post.text}</p>
-                  {post.images?.length > 0 && (
-                    <div className="post-images">
-                      {post.images.map((img, index) => (
-                        <img
-                          key={index}
-                          src={img}
-                          alt={`Post image ${index}`}
-                          className="post-image responsive-img"
-                        />
-                      ))}
-                    </div>
-                  )}
-                  <div className="share-container">
-                    <Share url={window.location.href} title={post.title} description={post.text} />
-                  </div>
-                </div>
-                
                   </div>
                 ))
               ) : (
                 <p>No posts yet!</p>
               )}
+              
             </div>
           
 

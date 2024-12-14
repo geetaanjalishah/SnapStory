@@ -5,6 +5,8 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { setDoc, doc, collection, onSnapshot, getDoc, addDoc } from "firebase/firestore";
 import { storage, db } from "../firebase";
 import axios from "axios"; // Import axios for Cloudinary API calls
+import FloatingLogoutButton from "./FloatingLogoutButton";
+import BackButton from "./BackButton";
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -159,6 +161,11 @@ const CreatePost = () => {
 
   return (
     <div className="create-post-container" style={styles.container}>
+    <div>
+    <FloatingLogoutButton />
+    <div>
+    <BackButton /></div>
+    </div>
       <div className="create-post-header" style={styles.header}>
         <h3>Create a New Post</h3>
       </div>

@@ -32,7 +32,6 @@ function App() {
       // <Signin onSignIn={writeData} />
     // </div>
     <Router>
-    <FloatingLogoutButton />
       <Routes>
         <Route path="/" element={      <Signin onSignIn={writeData} />      } />
         <Route path="/home" element={<Home />} />
