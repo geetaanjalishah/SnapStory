@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { db } from "../firebase"; // Import your Firebase config
+import { db } from "../firebase"; 
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import axios from "axios";
 import { getAuth, updateProfile } from "firebase/auth";
@@ -23,7 +23,7 @@ const EditProfile = () => {
   const [loading, setLoading] = useState(true);
 
   const auth = getAuth();
-  const userId = auth.currentUser?.uid; // Dynamically fetch user ID from Firebase Auth
+  const userId = auth.currentUser?.uid; 
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -62,7 +62,6 @@ const EditProfile = () => {
       const userRef = doc(db, "users", userId);
       await updateDoc(userRef, updates);
   
-      // Update Firebase Auth profile if necessary
       if (updates.name || updates.profileImage) {
         await updateProfile(auth.currentUser, {
           displayName: updates.name || auth.currentUser.displayName,

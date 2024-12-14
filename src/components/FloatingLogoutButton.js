@@ -9,7 +9,7 @@ const FloatingLogoutButton = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate("/"); // Redirect to the sign-in page
+      navigate("/"); 
     } catch (error) {
       console.error("Error logging out:", error);
     }

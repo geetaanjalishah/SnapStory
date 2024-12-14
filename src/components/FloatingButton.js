@@ -5,7 +5,7 @@ const FloatingButton = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/create-post"); // Replace with the route of your "Add New" page
+    navigate("/create-post"); 
   };
 
   return (

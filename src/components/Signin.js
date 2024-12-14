@@ -1,5 +1,5 @@
 import { signInWithPopup } from "firebase/auth";
-import { auth, provider, db } from "../firebase"; // Ensure db is initialized from your Firebase config
+import { auth, provider, db } from "../firebase"; 
 import { setDoc, doc, getDoc } from "firebase/firestore"; // Import getDoc to check if the user exists
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
@@ -36,10 +36,8 @@ export const Signin = () => {
         console.log("User already exists in Firestore.");
       }
 
-      // Save the refresh token in cookies
       cookies.set("auth-token", result.user.refreshToken);
 
-      // Navigate to the home page after data is saved or already exists
       navigate("/home");
     } catch (error) {
       console.error("Error during sign-in:", error.message);

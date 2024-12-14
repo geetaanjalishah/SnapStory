@@ -71,16 +71,16 @@ html {
 }
 
 .carousel {
-  flex: 1; /* Adjust flex for equal space sharing */
-  margin: 0 10px; /* Add spacing between carousels */
-  overflow: hidden; /* Prevent overflow */
-  border-radius: 10px; /* Add rounded corners for aesthetics */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  flex: 1; 
+  margin: 0 10px; 
+  overflow: hidden; 
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .container {
   display: flex;
-  height: 100%; /* Ensure it spans the full screen */
+  height: 100%; 
   width: 100%;
   position: relative;
 }
@@ -93,7 +93,7 @@ html {
 .carousel-container {
   display: flex;
   flex: 7;
-  justify-content: space-evenly; /* Or gap: 10px */
+  justify-content: space-evenly; 
   height: 50%;
 }
 
@@ -103,15 +103,17 @@ html {
     to right,
     #f5f7fa,
     #c3cfe2
-  ); /* Gradient background */
+  ); 
+  
+  
   text-align: center;
-  border-left: 2px solid #ccc; /* Add separation */
+  border-left: 2px solid #ccc; 
 }
 
 .carousel img {
   width: 100%;
-  height: 100%; /* Ensure it takes up the full height of the container */
-  object-fit: cover; /* Prevent distortion */
+  height: 100%; 
+  object-fit: cover; 
 }
 
 .auth-section {
@@ -186,11 +188,11 @@ html {
 .appname-logo {
   width: 46px;
   height: 50px;
-  /* margin-right: 0.5em; Adds spacing between the image and text */
+  
 }
 
 .appname {
-  font-size: 1em; /* Ensure the text and image are the same size */
+  font-size: 1em; 
 }
 
 .intro1 {
@@ -232,11 +234,11 @@ html {
 
 .floating-btn {
   position: fixed;
-  bottom: 20px; /* Distance from bottom */
-  right: 20px; /* Distance from right */
+  bottom: 20px; 
+  right: 20px; 
   width: 50px;
   height: 50px;
-  background-color: #007bff; /* Change to your preferred color */
+  background-color: #007bff; 
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -249,11 +251,11 @@ html {
 }
 
 .floating-btn:hover {
-  background-color: #0056b3; /* Darker shade for hover */
+  background-color: #0056b3;
 }
 
 .floating-btn:active {
-  background-color: #003f7f; /* Even darker shade for click */
+  background-color: #003f7f; 
 }
 
 .feeds {
@@ -278,8 +280,8 @@ html {
 .share-container {
   position: relative;
   display: flex;
-  justify-content: flex-end; /* Aligns the Share button to the right */
-  padding-top: 10px; /* Adjusts the space above the Share button */
+  justify-content: flex-end; 
+  padding-top: 10px; 
 }
 
 .share-btn {
@@ -295,22 +297,20 @@ html {
 
 .share-options {
   display: flex;
-  justify-content: space-between; /* Distribute the icons evenly in rows */
+  justify-content: space-between; 
   position: absolute;
-  top: 50px; /* Adjust to position the options below the button */
-  right: 0; /* Align to the right of the button */
-  background-color: white; /* Background color for the options */
+  top: 50px; 
+  right: 0;
+  background-color: white; 
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 10; /* Ensure it overlaps above the card */
+  z-index: 10; 
 }
 
 .share-options > * {
-  margin-right: 10px; /* Space between icons */
-}
+  margin-right: 10px; }
 
-/* Optional: Make the icons larger and aligned */
 .share-options svg {
   width: 30px;
   height: 30px;
@@ -341,22 +341,14 @@ html {
   padding: 20px;
 }
 
-.post.card {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: auto; /* Adjust as needed */
-  margin: 20px auto;
-}
 
 .post-images img {
-  /* max-height: 150px; */
   object-fit: cover;
   width: 100%;
 }
 
 .row {
-  gap: 20px; /* Add spacing between cards */
+  gap: 20px; 
 }
 
 .container {
@@ -366,7 +358,7 @@ html {
 
 .cover {
   position: relative;
-  height: 250px; /* Adjust the height of the cover image */
+  height: 250px; 
   width: 100%;
   overflow: hidden;
 }
@@ -379,7 +371,7 @@ html {
 
 .profile-info {
   position: relative;
-  top: -40px; /* Adjust this to bring the profile image above the cover */
+  top: -40px; 
   margin: 0 20px;
   text-align: center;
 }
@@ -388,7 +380,7 @@ html {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 5px solid white; /* Border to separate profile image from cover */
+  border: 5px solid white; 
   object-fit: cover;
   position: relative;
   display: flex;
@@ -438,7 +430,7 @@ p {
 }
 .cover {
   position: relative;
-  height: 200px; /* Adjust as needed */
+  height: 200px; 
   margin-bottom: 20px;
   border-radius: 10px;
   overflow: hidden;
@@ -513,15 +505,15 @@ p {
 }
 
 .icon-btn-1 {
-  position: absolute;  /* Position it relative to the nearest positioned ancestor */
-  bottom: 10px;        /* Adjust the distance from the bottom */
-  right: 10px;         /* Adjust the distance from the right side */
-  width: 35px;         /* Adjust the size of the icon */
-  height: 35px;        /* Adjust the size of the icon */
-  background-color: white; /* Change as needed */
-  border-radius: 50%;  /* Optional: make the icon round */
-  padding: 5px;        /* Optional: add padding inside the icon */
-  z-index: 10;         /* Ensure it's above other elements */
+  position: absolute;  
+  bottom: 10px;        
+  right: 10px;         
+  width: 35px;         
+  height: 35px;       
+  background-color: white; 
+  border-radius: 50%;  
+  padding: 5px;        
+  z-index: 10;        
 }
 
 
@@ -575,8 +567,8 @@ display: flex;
 .post.card {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  height: auto; /* Adjust as needed */
+  justify-content: space-around;
+  height: auto; 
   margin: 20px auto;
 }
 
@@ -587,3 +579,37 @@ display: flex;
 } */
 
 
+/* Responsive adjustments for posts container */
+@media (max-width: 768px) {
+  .col-2 {
+    display: none; 
+  }
+  .col-8 {
+    width: 100%; 
+  }
+  .post.card {
+    flex-direction: column; 
+    margin: 10px 0;
+  }
+ 
+  .post-images img {
+    max-width: 100%; 
+    height: auto; 
+  }
+  .share-container {
+    justify-content: center; 
+  }
+}
+
+/* Larger screen adjustments (desktop) */
+@media (min-width: 769px) {
+  .col-2 {
+    display: block; }
+  .post.card {
+    flex-direction: row; 
+  }
+  .post-header {
+    flex-direction: row;
+    text-align: left; 
+  }
+}

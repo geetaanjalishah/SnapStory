@@ -14,7 +14,6 @@ const firestore = getFirestore(app);
 function App() {
   const writeData = async (user) => {
     try {
-      // Save user details to Firestore
       await addDoc(collection(firestore, "users"), {
         name: user.displayName,
         email: user.email,

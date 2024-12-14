@@ -12,7 +12,6 @@ import {
   query, where
 } from "firebase/firestore";
 import { storage, db } from "../firebase";
-import axios from "axios"; // Import axios for Cloudinary API calls
 import FloatingButton from "./FloatingButton";
 import FloatingLogoutButton from "./FloatingLogoutButton";
 import BackButton from "./BackButton";
@@ -27,7 +26,7 @@ const Profile = () => {
   const [posts, setPosts] = useState([]);
   const [textPost, setTextPost] = useState("");
   const [files, setFiles] = useState([]);
-  const [bio, setBio] = useState(""); // Define bio state
+  const [bio, setBio] = useState(""); 
 
   useEffect(() => {
     const auth = getAuth();
@@ -38,9 +37,9 @@ const Profile = () => {
       fetchUserData(currentUser.uid);
       const unsubscribe = fetchGalleryImages(currentUser.uid);
       fetchUserPosts(currentUser.uid);
-      return () => unsubscribe(); // Clean up Firestore listener on unmount
+      return () => unsubscribe(); 
     } else {
-      navigate("/"); // Redirect if not authenticated
+      navigate("/");
     }
   }, [navigate]);
 
@@ -108,9 +107,8 @@ const Profile = () => {
           return postData;
         });
   
-        // Use Promise.all to ensure all post data is processed before setting state
         Promise.all(userPosts).then(postsWithUserDetails => {
-          setPosts(postsWithUserDetails); // Set the filtered posts
+          setPosts(postsWithUserDetails); 
         });
       },
       (error) => {
@@ -121,7 +119,6 @@ const Profile = () => {
   
   
 
-  // Example of updating bio in Firestore
   const updateBio = async (newBio, uid) => {
     try {
       const userDoc = doc(db, "users", uid);
@@ -131,7 +128,6 @@ const Profile = () => {
     }
   };
 
-  // Handle file input for post (multi-file)
   const handleFileChange = (e) => {
     setFiles(e.target.files);
   };

@@ -18,7 +18,7 @@ const CreatePost = () => {
   const [posts, setPosts] = useState([]);
   const [textPost, setTextPost] = useState("");
   const [files, setFiles] = useState([]);
-  const [cameraFile, setCameraFile] = useState(null); // For storing the captured photo
+  const [cameraFile, setCameraFile] = useState(null); 
 
   useEffect(() => {
     const auth = getAuth();
@@ -29,9 +29,9 @@ const CreatePost = () => {
       fetchUserData(currentUser.uid);
       const unsubscribe = fetchGalleryImages(currentUser.uid);
       fetchUserPosts(currentUser.uid);
-      return () => unsubscribe(); // Clean up Firestore listener on unmount
+      return () => unsubscribe(); 
     } else {
-      navigate("/"); // Redirect if not authenticated
+      navigate("/home"); 
     }
   }, [navigate]);
 
@@ -83,17 +83,15 @@ const CreatePost = () => {
     );
   };
 
-  // Handle file input for post (multi-file)
   const handleFileChange = (e) => {
     setFiles(e.target.files);
   };
 
-  // Handle camera input for capturing images
   const handleCameraCapture = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setCameraFile(URL.createObjectURL(file)); // Preview the captured image
-      setFiles([...files, file]); // Add camera file to the files array
+      setCameraFile(URL.createObjectURL(file)); 
+      setFiles([...files, file]); 
     }
   };
 
@@ -109,11 +107,11 @@ const CreatePost = () => {
     for (let i = 0; i < files.length; i++) {
       const formData = new FormData();
       formData.append("file", files[i]);
-      formData.append("upload_preset", "userimg"); // Replace with your Cloudinary upload preset
+      formData.append("upload_preset", "userimg"); 
 
       try {
         const response = await axios.post(
-          `https://api.cloudinary.com/v1_1/geetaanjalishah/image/upload`, // Replace with your Cloudinary Cloud Name
+          `https://api.cloudinary.com/v1_1/geetaanjalishah/image/upload`, 
           formData
         );
         const { secure_url } = response.data;
@@ -126,11 +124,9 @@ const CreatePost = () => {
       }
     }
 
-    // Add post with text and image URLs
     await createPost(uploadedUrls);
   };
 
-  // Create a new post in Firestore
   const createPost = async (uploadedUrls) => {
     if (textPost.trim() === "" && uploadedUrls.length === 0) {
       alert("Post cannot be empty!");
@@ -148,9 +144,9 @@ const CreatePost = () => {
       };
 
       await addDoc(collection(db, "posts"), newPost);
-      setTextPost(""); // Clear the text input
-      setFiles([]); // Clear selected files
-      setCameraFile(null); // Clear camera file
+      setTextPost(""); 
+      setFiles([]); 
+      setCameraFile(null); 
       alert("Post created successfully!");
       navigate("/");
     } catch (error) {
@@ -199,7 +195,6 @@ const CreatePost = () => {
   );
 };
 
-// Inline styling to create a beautiful layout
 const styles = {
   container: {
     fontFamily: 'Arial, sans-serif',
@@ -278,7 +273,7 @@ const styles = {
     marginBottom: '10px',
   },
   hiddenFileInput: {
-    display: 'none', // Hide the actual file input
+    display: 'none', 
   }
 };
 

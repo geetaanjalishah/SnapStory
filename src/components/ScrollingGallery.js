@@ -13,21 +13,20 @@ const ScrollingGallery = () => {
     "https://s3-alpha-sig.figma.com/img/1d12/d5f5/034e1a60724e3533eb0244bb6ebd4d5c?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=LfKoZsGM2mpK0VPdEXCEhKFJiqimRMaJlniMpSZ5dez-s2se~gXCm6CsGxzVV7CvN~DbtWn1YyqbU1pbp1yKh3LZrBkwk5WNuwVijFsOztKqO2kUsK8UARr8Ek0eomWRVnTvpPYR4AuKYiRGx~x7E26Dktmo8pKkP6pcuQ7VwEJJ2oHNEyGbVWcZi9ByP-Glxswkmxf8x-tiTpoeX~BNaImdlx8X~YAaVqAlyNyqAd9MCJGNF2JZynaIxMQAXUTi7N54leqEySpYi9GPdeiAACyJvXxVjrCOB5VI4IG1v~eXo-Rry1Gmghxm42oSZPdDnMC-dme4F4EUecFHVWvqag__",
     "https://s3-alpha-sig.figma.com/img/43a1/be88/fe922fec80f9bd747fbe931d0ac5bcdc?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=iM~QWiOMPspG9Rjfu5~ZU9YLfhaVLTnkPzXXegulRRvbl5fHoSxKh-P8GhKaZwX5d4FLxJi3PW9kg8gGgHvJjKKQosAkqexR7Apnupodt1VokiUwkFx3U14P7B2H3PVgz2vz6~pc74~EV9tlwGbE8PE2XBmTgJh422X2~UVtIzDyZpxiHLtkzWDV1IzLp~sdgogSs8prho42v3L-LWuxRREFcJF1An~BlrELghX60rrM95veT~QVJwl2uu8gcHolZx7OWlg~GfYRxnGglhK3YoKtCXUiTBRzUkqtIzHgs7B8PPaMnlX4O7VmqJosmIHwmOZxQ2lIC4F7TAx7JLuXLg__",
     "https://s3-alpha-sig.figma.com/img/7ce7/facf/669dc0383b4fe8e47fdc768f7968602b?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pa7t9hCHQ0J2xdnEJTKRDt-oBRzFK8vQu2BQM0nva9SoarC65rWt~wIEm3g52892U7SKuBmOizz-9kPbW1Gnj5vdmZanyObksEhxeH~5cgVXwPi~jDpNdhE9T79USakGq8s4gMlozyD1fPZaPIBnbL1Pcc-h2sK9TAfZijtOy3-tjQBUpqE8VBp0QH-atti3LaZ5O4~8Gx5ZldeBGaR-O65v5MOHAOeVYN-ugXd2lQOUtiFu8Oooceer7PvB5YnRZ2KgfxFxlAbh2Y5n5W62F8hGwEUsoL7oofShWz9jxfBb8zgodHUgWB1UReDuLNPfBcZEJDPkul9wnGgot1D1kg__",
-  ]; // Replace with your actual image URLs
+  ]; 
 
   useEffect(() => {
     const scrollInterval = setInterval(() => {
       setScrollPosition((prevPosition) => prevPosition + 1);
-    }, 50); // Adjust the interval for scroll speed
+    }, 50); 
 
-    return () => clearInterval(scrollInterval); // Clean up interval on component unmount
+    return () => clearInterval(scrollInterval); 
   }, []);
 
   useEffect(() => {
     const galleryElement = document.getElementById("scrolling-gallery");
 
     if (galleryElement) {
-      // Reset scroll position when it reaches the bottom
       if (
         scrollPosition >=
         galleryElement.scrollHeight - galleryElement.clientHeight
@@ -43,7 +42,7 @@ const ScrollingGallery = () => {
     <div
       id="scrolling-gallery"
       style={{
-        height: "100%", // Adjust height as needed
+        height: "100%",
         overflow: "hidden",
         border: "1px solid #ccc",
       }}
